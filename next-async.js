@@ -1,5 +1,5 @@
 /**
- * Next
+ * Next Async
  * write async prog in a linear way
  *
  * Copyright (c) 2012 rhyzx

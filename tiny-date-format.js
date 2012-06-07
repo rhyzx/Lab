@@ -30,7 +30,7 @@
 			's' : date.getSeconds()
 		};
 		return pattern.replace(regex, function(x) {
-			return ('000000'+rs[x.charAt(0)]).slice(-x.length);//max leading 8 zero
+			return ('00000000'+rs[x.charAt(0)]).slice(-x.length);//max leading 8 zero
 		});
 	};
 })(window);

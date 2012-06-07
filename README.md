@@ -4,6 +4,7 @@ Lab
 Ezy Class
 ---------
 create class easily
+
 	var Animal = $.class({
 		init:function(name) {
 			this.name = name;
@@ -49,3 +50,8 @@ write async program in linear way
 	}).next(function(next, data) {
 		//...
 	});
+	
+	
+Hash Extension
+--------------
+onhashchange&hash history for ie6/7

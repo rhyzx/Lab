@@ -7,7 +7,7 @@
  * Licensed under the MIT license
  *
  * @example :
-	$.next(function(next) {
+	next(function(next) {
 		ajax(next);
 	}).next(function(next, data) {
 		ajax(next);
@@ -20,7 +20,8 @@
 ;(function nextAsync($) {
 	"use strict";
 	
-	$ = $ || window; //bind on jQuery if exist
+	//$ = $ || window; //bind on jQuery if exist
+	$ = window;
 	$.next = next;
 	
 	/* implement by new Array */

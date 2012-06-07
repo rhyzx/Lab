@@ -7,7 +7,7 @@
  * Licensed under the MIT license
  *
  * @example :
-	var Animal = $.class({
+	var Animal = Class({
 		init:function(name) {
 			this.name = name;
 		},
@@ -15,7 +15,7 @@
 			alert(this.name);
 		}
 	});
-	var Cat = $.class.extend(Animal, {
+	var Cat = Class.extend(Animal, {
 	   jump:function() {
 	       alert('jump ' +this.name);
 	   }
@@ -27,7 +27,8 @@
 ;(function($) {
 	"use strict";
 	
-	$ = $ || window; //bind on jQuery if exist
+	//$ = $ || window; //bind on jQuery if exist
+	$ = window;
 	$.Class = Class; //class是关键字所以只能用大写
 
 	/**

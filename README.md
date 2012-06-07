@@ -5,7 +5,7 @@ Ezy Class
 ---------
 create class easily
 
-	var Animal = $.class({
+	var Animal = Class({
 		init:function(name) {
 			this.name = name;
 		},
@@ -13,7 +13,7 @@ create class easily
 			alert(this.name);
 		}
 	});
-	var Cat = $.class.extend(Animal, {
+	var Cat = Class.extend(Animal, {
 		 jump:function() {
 				 alert('jump ' +this.name);
 		 }

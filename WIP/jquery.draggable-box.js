@@ -2,7 +2,27 @@
  * Draggable Box
  * @require jQuery
  * @require jQuery.Drag
- *
+ * @css
+	.box {
+		background: rgba(0,0,0,.4);			
+		position: absolute;
+	}
+	.box .mover {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		cursor: move;
+	}
+	.box .sizer {
+		width: 8px;
+		height: 8px;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		cursor: se-resize;
+	}
  * @example 
  *		new Box(100, 100, '.container');
  */

@@ -17,7 +17,7 @@
 			x = evt.clientX;
 			y = evt.clientY;
 			
-			//bind on window for leak
+			//bind on window to prevent leak
 			$(window).bind('mousemove', m).bind('mouseup', function fn(evt) {
 				$(this).unbind('mousemove', m).unbind('mouseup', fn);
 				

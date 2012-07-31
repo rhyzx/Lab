@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Tiny Js Loader</title>
+	<!-- 
+	<script type="text/javascript" src="t1.js"></script>
+	<script type="text/javascript" src="t2.js"></script>
+	-->
+	<script type="text/javascript" data="t1.js, t2.js">
+		var files	= document.scripts[0].getAttribute('data').split(/ *, */),
+			script	= document.createElement('script');
+			
+		for(var i=0, c=files.length; i<c; i++) {
+			var node = script.cloneNode(false);
+			node.src = files[i];
+			script.appendChild(node);
+		}
+		
+		document.documentElement.appendChild(script);
+		document.documentElement.removeChild(script);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

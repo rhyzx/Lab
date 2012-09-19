@@ -11,7 +11,7 @@
  */
 ;(function($) {
 	"use strict";
-	Date.prototype.format = function(pattern){tinyDateFormat(this, pattern)}; //bind on Date class
+	Date.prototype.format = function(pattern){return tinyDateFormat(this, pattern)}; //bind on Date class
 	//$.formatDate = tinyDateFormat;
 	
 	var regex = /y+|M+|d+|h+|m+|s+/g;

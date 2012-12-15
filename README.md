@@ -43,13 +43,13 @@ write async program in linear way
 	/* after */
 	next(function(next) {
 		ajax(next);
-	}).next(function(next, data) {
+	}).next(function(data, next) {
 		ajax(next);
-	}).next(function(next, data) {
+	}).next(function(data, next) {
 		ajax(next);
-	}).next(function(next, data) {
+	}).next(function(data, next) {
 		//...
-	});
+	})();
 	
 	
 Hash Extension

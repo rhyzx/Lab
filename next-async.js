@@ -1,71 +1,52 @@
-/**
+/*!
  * Next Async
  * write async prog in a linear way
  *
  * Copyright (c) 2012 rhyzx
- * https://github.com/rhyzx
+ * https://github.com/rhyzx/Lab/blob/master/next-async.js
  * Licensed under the MIT license
  *
  * @example :
-	next(function(next) {
-		ajax(next);
-	}).next(function(next, data) {
-		ajax(next);
-	}).next(function(next, data) {
-		ajax(next);
-	}).next(function(next, data) {
-		//...
-	});
+ *		next(function(v, next) {
+ *			console.log(v); //log 1
+ *			next(2, 3);
+ *		}).next(function(a, b, next) {
+ *			console.log(a+b); //log 5
+ *			ajax(next); //set ajax callback
+ *		}).next(function(data, next) {
+ *			//do something...
+ *		})(1);//start
  */
-;(function nextAsync($) {
+;(function ($, undefined) {
 	"use strict";
 	
-	//$ = $ || window; //bind on jQuery if exist
-	$ = window;
+	//bind global
 	$.next = next;
-	
-	/* implement by new Array */
-	function next(firstFn) {
-		var	fns		= [firstFn],
-			index	= 0;
-			
-		var t = setTimeout(function() {
-			(function exec() {
-				var fn = fns[index++];
-				Array.prototype.unshift.call(arguments, exec);
-				fn.apply(this, arguments);
-			})();
-			
-			clearTimeout(t);
-		}, 0);
-		
-		var push = {
-			next : function (fn) {
-				fns.push(fn);
-				return push;
-			}
+
+	//main
+	function next(fn) {
+		var first = createNext(fn)
+		  , last  = first;
+
+		function executor() {
+			first.apply(this, arguments);
+		}
+
+		//only expose executor
+		//neither midify nor expose fisrt
+		executor.next = function (fn) {
+			last.next = last = createNext(fn);
+			return this;
 		};
-		return push;
+
+		return executor;
 	}
-	
-	
-	/* implement by modifying Function prototype *//*
-	function next(firstFn) {
-		var t = setTimeout(function() {
-			var fn = {nextFn: firstFn};
-			(function exec() {
-				fn = fn.nextFn;
-				Array.prototype.unshift.call(arguments, exec);
-				fn.apply(this, arguments);
-			})();
-			
-			clearTimeout(t);
-		}, 0);
-		return firstFn;
+
+	//ceate a new Next object(also is function)
+	function createNext(fn) {
+		return function Next() {
+			Array.prototype.push.call(arguments, Next.next);
+			fn.apply(this, arguments);
+		};
 	}
-	Function.prototype.next = function(fn) {
-		this.nextFn = fn;
-		return fn;
-	};
-	*/
-})(jQuery);
+})(window.jQuery || window);

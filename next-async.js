@@ -45,8 +45,15 @@
     //ceate a new Next object(also is function)
     function createNext(fn) {
         return function Next() {
-            Array.prototype.push.call(arguments, Next.next);
-            fn.apply(this, arguments);
+            var that = this;
+            
+            //push next callback
+            Array.prototype.push.call(arguments, function () { //pass context, `Next.next.bind(this)`
+                Next.next.apply(that, arguments);
+            });
+
+            //call registered function
+            fn.apply(that, arguments);
         };
     }
 })(window.jQuery || window);

@@ -1,0 +1,13 @@
+{
+  "name": "lt-benchdriven",
+  "version": "0.0.0",
+  "description": "",
+  "dependencies": {
+    "benchmark": "~1.0.0",
+    "handlebars": "~1.0.10",
+    "juicer": "~0.6.5-stable",
+    "mustache": "~0.7.2",
+    "templayed": "~0.2.3"
+  },
+  "license": "MIT"
+}

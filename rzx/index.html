@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- <script src="bower_components/jquery/dist/jquery.js"></script> -->
+  <script src="bower_components/rxjs/dist/rx.all.js"></script>
+  <script src="bower_components/rxjs-dom/dist/rx.dom.js"></script>
+  <script src="v.js"></script>
+  <script src="rzx.js"></script>
+</head>
+<body>
+  <div id="foo-container"></div>
+
+<script>
+source = new Rx.BehaviorSubject([new Rx.BehaviorSubject('hehe'), new Rx.BehaviorSubject('xixi')])
+// sub = source
+// .observeOn(Rx.Scheduler.requestAnimationFrame)
+// .selectMany(function (list) {
+//   console.log('select', arguments)
+//   return Rx.Observable.combineLatest(list, function () {
+//     console.log('combine', arguments)
+//     return 12
+//   })
+// })
+// .subscribe(function () {
+//   sub.dispose()
+//   console.log('final', arguments)
+// })
+new Rx.BehaviorSubject(1)
+.concatMap(function () {
+  console.log(arguments)
+  return new Rx.BehaviorSubject(2)
+})
+
+.subscribe(function () {
+  console.log(arguments)
+})
+
+
+</script>
+
+<script>
+var foo = new ReactiveModel(1)
+
+var FooBtn = Component.extend({
+  constructor: function (foo) {
+    this.foo = foo
+    this.subscribeRenderOn(foo)
+  },
+  onClick: function () {
+    this.foo.update(function (value) {
+      return value + 1
+    })
+  },
+  render: function (state) {
+    return h('button', {onclick: this.onClick.bind(this)}, '' + state)
+  }
+})
+
+var FooItem = Component.extend({
+  constructor: function (foo) {
+    this.foo = foo
+    this.subscribeRenderOn(foo)
+  },
+  render: function (foo) {
+    return h('div', [h('h1', '' + foo), new FooBtn(this.foo)])
+  }
+})
+var fooItem = new FooItem(foo)
+document.getElementById('foo-container').appendChild(fooItem.toElement())
+</script>
+</body>
+</html>

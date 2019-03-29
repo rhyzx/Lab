@@ -1,0 +1,6 @@
+.redo
+*.exe
+*.o
+*.dep
+*.depc
+*.depo

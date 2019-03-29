@@ -1,2 +1,2 @@
 redo-ifchange $2.dep
-ruby depc.rb $2.dep > $3
+ruby -e "puts ARGF.first.gsub(/^.*:/, '')" $2.dep > $3

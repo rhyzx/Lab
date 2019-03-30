@@ -1,0 +1,1 @@
+char *gooName = "google";
